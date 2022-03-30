@@ -5,7 +5,7 @@ import (
 )
 
 type SeoModel struct {
-	Id      uint   `gorm:"primaryKey";json:"id"`
+	Id      uint   `gorm:"primaryKey" json:"id"`
 	M      string   `json:"m"` 
 	A      string   `json:"a"` 
 	Cname      string   `json:"cname"` 

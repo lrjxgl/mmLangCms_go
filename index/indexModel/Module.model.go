@@ -5,7 +5,7 @@ import (
 )
 
 type ModuleModel struct {
-	Id      uint   `gorm:"primaryKey";json:"id"`
+	Id      uint   `gorm:"primaryKey" json:"id"`
 	Title      string   `json:"title"` 
 	Tablename      string   `json:"tablename"` 
 	Data      string   `json:"data"` 

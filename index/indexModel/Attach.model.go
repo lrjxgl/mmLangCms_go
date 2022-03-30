@@ -5,7 +5,7 @@ import (
 )
 
 type AttachModel struct {
-	Id      uint   `gorm:"primaryKey";json:"id"`
+	Id      uint   `gorm:"primaryKey" json:"id"`
 	Dateline      uint   `json:"dateline"` 
 	Status      uint   `json:"status"` 
 	Userid      uint   `json:"userid"` 

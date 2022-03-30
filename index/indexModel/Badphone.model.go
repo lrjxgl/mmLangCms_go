@@ -5,7 +5,7 @@ import (
 )
 
 type BadphoneModel struct {
-	Id      uint   `gorm:"primaryKey";json:"id"`
+	Id      uint   `gorm:"primaryKey" json:"id"`
 	Telephone      string   `json:"telephone"` 
 	Createtime      string   `json:"createtime"` 
 	Content      string   `json:"content"` 

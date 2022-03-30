@@ -5,7 +5,7 @@ import (
 )
 
 type CheckinIndexModel struct {
-	Id      uint   `gorm:"primaryKey";json:"id"`
+	Id      uint   `gorm:"primaryKey" json:"id"`
 	Type_id      uint   `json:"type_id"` 
 	Userid      uint   `json:"userid"` 
 	Dateline      uint   `json:"dateline"` 

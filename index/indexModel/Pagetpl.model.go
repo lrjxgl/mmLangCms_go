@@ -5,7 +5,7 @@ import (
 )
 
 type PagetplModel struct {
-	Id      uint   `gorm:"primaryKey";json:"id"`
+	Id      uint   `gorm:"primaryKey" json:"id"`
 	M      string   `json:"m"` 
 	A      string   `json:"a"` 
 	Tpl      string   `json:"tpl"` 

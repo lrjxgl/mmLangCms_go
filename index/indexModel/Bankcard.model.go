@@ -5,7 +5,7 @@ import (
 )
 
 type BankcardModel struct {
-	Id      uint   `gorm:"primaryKey";json:"id"`
+	Id      uint   `gorm:"primaryKey" json:"id"`
 	Userid      uint   `json:"userid"` 
 	Status      uint   `json:"status"` 
 	Yhk_name      string   `json:"yhk_name"` 

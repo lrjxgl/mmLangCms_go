@@ -5,7 +5,7 @@ import (
 )
 
 type BlacklistPostModel struct {
-	Id      uint   `gorm:"primaryKey";json:"id"`
+	Id      uint   `gorm:"primaryKey" json:"id"`
 	Userid      uint   `json:"userid"` 
 	Siteid      uint   `json:"siteid"` 
 	Dateline      uint   `json:"dateline"` 

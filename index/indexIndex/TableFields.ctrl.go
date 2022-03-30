@@ -22,12 +22,18 @@ func TableFieldsNull(c echo.Context) (err error){
 				return config.Success(c, 1000, "请先登录")
 			}
 		
-	reJson := make(map[string]interface{})
+	reData := make(map[string]interface{})
+	reData["error"] = 0
+	reData["message"] = "success"
+	reData["now"]=now;
+	 
+	
+	reJson := make(map[string]interface{}) 
 	reJson["error"] = 0
 	reJson["message"] = "success"
-	reJson["now"]=now;
-	 
-	return c.JSON(http.StatusOK, reJson)
+	reJson["data"]=reData;
+	return c.JSON(http.StatusOK, reJson) 
+
 }
 
 /*@@TableFieldsIndex@@*/
@@ -59,14 +65,20 @@ func TableFieldsIndex(c echo.Context) (err error) {
 	if per_page>rscount {
 		per_page=0;
 	}
-	reJson := make(map[string]interface{})
+	reData := make(map[string]interface{})
+	reData["error"] = 0
+	reData["message"] = "success"
+	reData["list"] = indexModel.TableFieldsList(list)
+	reData["type"] = reflect.TypeOf(list)
+	reData["rscount"]=rscount;
+	reData["per_page"]=per_page;
+	
+	reJson := make(map[string]interface{}) 
 	reJson["error"] = 0
 	reJson["message"] = "success"
-	reJson["list"] = indexModel.TableFieldsList(list)
-	reJson["type"] = reflect.TypeOf(list)
-	reJson["rscount"]=rscount;
-	reJson["per_page"]=per_page;
-	return c.JSON(http.StatusOK, reJson)
+	reJson["data"]=reData;
+	return c.JSON(http.StatusOK, reJson) 
+
 }
 
 /*@@TableFieldsList@@*/
@@ -98,14 +110,20 @@ func TableFieldsList(c echo.Context) (err error) {
 	if per_page>rscount {
 		per_page=0;
 	}
-	reJson := make(map[string]interface{})
+	reData := make(map[string]interface{})
+	reData["error"] = 0
+	reData["message"] = "success"
+	reData["list"] = indexModel.TableFieldsList(list)
+	reData["type"] = reflect.TypeOf(list)
+	reData["rscount"]=rscount;
+	reData["per_page"]=per_page;
+	
+	reJson := make(map[string]interface{}) 
 	reJson["error"] = 0
 	reJson["message"] = "success"
-	reJson["list"] = indexModel.TableFieldsList(list)
-	reJson["type"] = reflect.TypeOf(list)
-	reJson["rscount"]=rscount;
-	reJson["per_page"]=per_page;
-	return c.JSON(http.StatusOK, reJson)
+	reJson["data"]=reData;
+	return c.JSON(http.StatusOK, reJson) 
+
 }
 
 /*@@TableFieldsShow@@*/
@@ -119,9 +137,15 @@ func TableFieldsShow(c echo.Context) (err error) {
 		return config.Success(c, 1, "数据不存在")
 	}
 	//输出浏览器
-	reJson := make(map[string]interface{})
+	reData := make(map[string]interface{})
+	reData["error"] = 0
+	reData["message"] = "success"
+	reData["data"] = data
+	
+	reJson := make(map[string]interface{}) 
 	reJson["error"] = 0
 	reJson["message"] = "success"
-	reJson["data"] = data
-	return c.JSON(http.StatusOK, reJson)
+	reJson["data"]=reData;
+	return c.JSON(http.StatusOK, reJson) 
+
 }

@@ -22,12 +22,18 @@ func UserExpandNull(c echo.Context) (err error){
 				return config.Success(c, 1000, "请先登录")
 			}
 		
-	reJson := make(map[string]interface{})
+	reData := make(map[string]interface{})
+	reData["error"] = 0
+	reData["message"] = "success"
+	reData["now"]=now;
+	 
+	
+	reJson := make(map[string]interface{}) 
 	reJson["error"] = 0
 	reJson["message"] = "success"
-	reJson["now"]=now;
-	 
-	return c.JSON(http.StatusOK, reJson)
+	reJson["data"]=reData;
+	return c.JSON(http.StatusOK, reJson) 
+
 }
 
 /*@@UserExpandIndex@@*/
@@ -59,14 +65,20 @@ func UserExpandIndex(c echo.Context) (err error) {
 	if per_page>rscount {
 		per_page=0;
 	}
-	reJson := make(map[string]interface{})
+	reData := make(map[string]interface{})
+	reData["error"] = 0
+	reData["message"] = "success"
+	reData["list"] = indexModel.UserExpandList(list)
+	reData["type"] = reflect.TypeOf(list)
+	reData["rscount"]=rscount;
+	reData["per_page"]=per_page;
+	
+	reJson := make(map[string]interface{}) 
 	reJson["error"] = 0
 	reJson["message"] = "success"
-	reJson["list"] = indexModel.UserExpandList(list)
-	reJson["type"] = reflect.TypeOf(list)
-	reJson["rscount"]=rscount;
-	reJson["per_page"]=per_page;
-	return c.JSON(http.StatusOK, reJson)
+	reJson["data"]=reData;
+	return c.JSON(http.StatusOK, reJson) 
+
 }
 
 /*@@UserExpandList@@*/
@@ -98,14 +110,20 @@ func UserExpandList(c echo.Context) (err error) {
 	if per_page>rscount {
 		per_page=0;
 	}
-	reJson := make(map[string]interface{})
+	reData := make(map[string]interface{})
+	reData["error"] = 0
+	reData["message"] = "success"
+	reData["list"] = indexModel.UserExpandList(list)
+	reData["type"] = reflect.TypeOf(list)
+	reData["rscount"]=rscount;
+	reData["per_page"]=per_page;
+	
+	reJson := make(map[string]interface{}) 
 	reJson["error"] = 0
 	reJson["message"] = "success"
-	reJson["list"] = indexModel.UserExpandList(list)
-	reJson["type"] = reflect.TypeOf(list)
-	reJson["rscount"]=rscount;
-	reJson["per_page"]=per_page;
-	return c.JSON(http.StatusOK, reJson)
+	reJson["data"]=reData;
+	return c.JSON(http.StatusOK, reJson) 
+
 }
 
 /*@@UserExpandShow@@*/
@@ -119,9 +137,15 @@ func UserExpandShow(c echo.Context) (err error) {
 		return config.Success(c, 1, "数据不存在")
 	}
 	//输出浏览器
-	reJson := make(map[string]interface{})
+	reData := make(map[string]interface{})
+	reData["error"] = 0
+	reData["message"] = "success"
+	reData["data"] = data
+	
+	reJson := make(map[string]interface{}) 
 	reJson["error"] = 0
 	reJson["message"] = "success"
-	reJson["data"] = data
-	return c.JSON(http.StatusOK, reJson)
+	reJson["data"]=reData;
+	return c.JSON(http.StatusOK, reJson) 
+
 }

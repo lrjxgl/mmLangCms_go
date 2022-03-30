@@ -22,12 +22,18 @@ func InviteAccountNull(c echo.Context) (err error){
 				return config.Success(c, 1000, "请先登录")
 			}
 		
-	reJson := make(map[string]interface{})
+	reData := make(map[string]interface{})
+	reData["error"] = 0
+	reData["message"] = "success"
+	reData["now"]=now;
+	 
+	
+	reJson := make(map[string]interface{}) 
 	reJson["error"] = 0
 	reJson["message"] = "success"
-	reJson["now"]=now;
-	 
-	return c.JSON(http.StatusOK, reJson)
+	reJson["data"]=reData;
+	return c.JSON(http.StatusOK, reJson) 
+
 }
 
 /*@@InviteAccountIndex@@*/
@@ -59,14 +65,20 @@ func InviteAccountIndex(c echo.Context) (err error) {
 	if per_page>rscount {
 		per_page=0;
 	}
-	reJson := make(map[string]interface{})
+	reData := make(map[string]interface{})
+	reData["error"] = 0
+	reData["message"] = "success"
+	reData["list"] = indexModel.InviteAccountList(list)
+	reData["type"] = reflect.TypeOf(list)
+	reData["rscount"]=rscount;
+	reData["per_page"]=per_page;
+	
+	reJson := make(map[string]interface{}) 
 	reJson["error"] = 0
 	reJson["message"] = "success"
-	reJson["list"] = indexModel.InviteAccountList(list)
-	reJson["type"] = reflect.TypeOf(list)
-	reJson["rscount"]=rscount;
-	reJson["per_page"]=per_page;
-	return c.JSON(http.StatusOK, reJson)
+	reJson["data"]=reData;
+	return c.JSON(http.StatusOK, reJson) 
+
 }
 
 /*@@InviteAccountList@@*/
@@ -98,14 +110,20 @@ func InviteAccountList(c echo.Context) (err error) {
 	if per_page>rscount {
 		per_page=0;
 	}
-	reJson := make(map[string]interface{})
+	reData := make(map[string]interface{})
+	reData["error"] = 0
+	reData["message"] = "success"
+	reData["list"] = indexModel.InviteAccountList(list)
+	reData["type"] = reflect.TypeOf(list)
+	reData["rscount"]=rscount;
+	reData["per_page"]=per_page;
+	
+	reJson := make(map[string]interface{}) 
 	reJson["error"] = 0
 	reJson["message"] = "success"
-	reJson["list"] = indexModel.InviteAccountList(list)
-	reJson["type"] = reflect.TypeOf(list)
-	reJson["rscount"]=rscount;
-	reJson["per_page"]=per_page;
-	return c.JSON(http.StatusOK, reJson)
+	reJson["data"]=reData;
+	return c.JSON(http.StatusOK, reJson) 
+
 }
 
 /*@@InviteAccountShow@@*/
@@ -119,11 +137,17 @@ func InviteAccountShow(c echo.Context) (err error) {
 		return config.Success(c, 1, "数据不存在")
 	}
 	//输出浏览器
-	reJson := make(map[string]interface{})
+	reData := make(map[string]interface{})
+	reData["error"] = 0
+	reData["message"] = "success"
+	reData["data"] = data
+	
+	reJson := make(map[string]interface{}) 
 	reJson["error"] = 0
 	reJson["message"] = "success"
-	reJson["data"] = data
-	return c.JSON(http.StatusOK, reJson)
+	reJson["data"]=reData;
+	return c.JSON(http.StatusOK, reJson) 
+
 }
 
 /*@@InviteAccountMy@@*/
@@ -155,14 +179,20 @@ func InviteAccountMy(c echo.Context) (err error) {
 	if per_page>rscount {
 		per_page=0;
 	}
-	reJson := make(map[string]interface{})
+	reData := make(map[string]interface{})
+	reData["error"] = 0
+	reData["message"] = "success"
+	reData["list"] = indexModel.InviteAccountList(list)
+	reData["type"] = reflect.TypeOf(list)
+	reData["rscount"]=rscount;
+	reData["per_page"]=per_page;
+	
+	reJson := make(map[string]interface{}) 
 	reJson["error"] = 0
 	reJson["message"] = "success"
-	reJson["list"] = indexModel.InviteAccountList(list)
-	reJson["type"] = reflect.TypeOf(list)
-	reJson["rscount"]=rscount;
-	reJson["per_page"]=per_page;
-	return c.JSON(http.StatusOK, reJson)
+	reJson["data"]=reData;
+	return c.JSON(http.StatusOK, reJson) 
+
 }
 
 /*@@InviteAccountAdd@@*/
@@ -191,12 +221,18 @@ func InviteAccountAdd(c echo.Context) (err error) {
 	}
 
 	//输出浏览器
-	reJson := make(map[string]interface{})
+	reData := make(map[string]interface{})
+	reData["error"] = 0
+	reData["message"] = "success"
+	reData["data"] = data
+	reData["id"] = id
+	
+	reJson := make(map[string]interface{}) 
 	reJson["error"] = 0
 	reJson["message"] = "success"
-	reJson["data"] = data
-	reJson["id"] = id
-	return c.JSON(http.StatusOK, reJson)
+	reJson["data"]=reData;
+	return c.JSON(http.StatusOK, reJson) 
+
 }
 
 /*@@InviteAccountSave@@*/
@@ -236,11 +272,17 @@ func InviteAccountSave(c echo.Context) (err error) {
 	}
 
 	//输出浏览器
-	reJson := make(map[string]interface{})
+	reData := make(map[string]interface{})
+	reData["error"] = 0
+	reData["message"] = "success"
+	reData["data"] = postData
+	
+	reJson := make(map[string]interface{}) 
 	reJson["error"] = 0
 	reJson["message"] = "success"
-	reJson["data"] = postData
-	return c.JSON(http.StatusOK, reJson)
+	reJson["data"]=reData;
+	return c.JSON(http.StatusOK, reJson) 
+
 }
 /*@@InviteAccountDelete@@*/
 func InviteAccountDelete(c echo.Context) (err error) {

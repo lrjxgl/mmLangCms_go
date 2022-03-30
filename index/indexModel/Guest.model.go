@@ -5,7 +5,7 @@ import (
 )
 
 type GuestModel struct {
-	Id      uint   `gorm:"primaryKey";json:"id"`
+	Id      uint   `gorm:"primaryKey" json:"id"`
 	Title      string   `json:"title"` 
 	Type_id      uint   `json:"type_id"` 
 	Userid      uint   `json:"userid"` 

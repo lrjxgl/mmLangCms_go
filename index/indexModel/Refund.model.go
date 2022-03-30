@@ -5,7 +5,7 @@ import (
 )
 
 type RefundModel struct {
-	Id      uint   `gorm:"primaryKey";json:"id"`
+	Id      uint   `gorm:"primaryKey" json:"id"`
 	Userid      uint   `json:"userid"` 
 	Shopid      uint   `json:"shopid"` 
 	Paytype      string   `json:"paytype"` 

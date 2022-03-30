@@ -5,7 +5,7 @@ import (
 )
 
 type WeixinCommandModel struct {
-	Id      uint   `gorm:"primaryKey";json:"id"`
+	Id      uint   `gorm:"primaryKey" json:"id"`
 	Wid      uint   `json:"wid"` 
 	Title      string   `json:"title"` 
 	Command      string   `json:"command"` 

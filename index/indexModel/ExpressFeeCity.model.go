@@ -5,7 +5,7 @@ import (
 )
 
 type ExpressFeeCityModel struct {
-	Id      uint   `gorm:"primaryKey";json:"id"`
+	Id      uint   `gorm:"primaryKey" json:"id"`
 	Pid      uint   `json:"pid"` 
 	Areaid      uint   `json:"areaid"` 
 

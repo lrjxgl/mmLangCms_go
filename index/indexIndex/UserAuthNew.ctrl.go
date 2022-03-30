@@ -22,12 +22,18 @@ func UserAuthNewNull(c echo.Context) (err error){
 				return config.Success(c, 1000, "请先登录")
 			}
 		
-	reJson := make(map[string]interface{})
+	reData := make(map[string]interface{})
+	reData["error"] = 0
+	reData["message"] = "success"
+	reData["now"]=now;
+	 
+	
+	reJson := make(map[string]interface{}) 
 	reJson["error"] = 0
 	reJson["message"] = "success"
-	reJson["now"]=now;
-	 
-	return c.JSON(http.StatusOK, reJson)
+	reJson["data"]=reData;
+	return c.JSON(http.StatusOK, reJson) 
+
 }
 
 /*@@UserAuthNewIndex@@*/
@@ -59,14 +65,20 @@ func UserAuthNewIndex(c echo.Context) (err error) {
 	if per_page>rscount {
 		per_page=0;
 	}
-	reJson := make(map[string]interface{})
+	reData := make(map[string]interface{})
+	reData["error"] = 0
+	reData["message"] = "success"
+	reData["list"] = indexModel.UserAuthNewList(list)
+	reData["type"] = reflect.TypeOf(list)
+	reData["rscount"]=rscount;
+	reData["per_page"]=per_page;
+	
+	reJson := make(map[string]interface{}) 
 	reJson["error"] = 0
 	reJson["message"] = "success"
-	reJson["list"] = indexModel.UserAuthNewList(list)
-	reJson["type"] = reflect.TypeOf(list)
-	reJson["rscount"]=rscount;
-	reJson["per_page"]=per_page;
-	return c.JSON(http.StatusOK, reJson)
+	reJson["data"]=reData;
+	return c.JSON(http.StatusOK, reJson) 
+
 }
 
 /*@@UserAuthNewList@@*/
@@ -98,14 +110,20 @@ func UserAuthNewList(c echo.Context) (err error) {
 	if per_page>rscount {
 		per_page=0;
 	}
-	reJson := make(map[string]interface{})
+	reData := make(map[string]interface{})
+	reData["error"] = 0
+	reData["message"] = "success"
+	reData["list"] = indexModel.UserAuthNewList(list)
+	reData["type"] = reflect.TypeOf(list)
+	reData["rscount"]=rscount;
+	reData["per_page"]=per_page;
+	
+	reJson := make(map[string]interface{}) 
 	reJson["error"] = 0
 	reJson["message"] = "success"
-	reJson["list"] = indexModel.UserAuthNewList(list)
-	reJson["type"] = reflect.TypeOf(list)
-	reJson["rscount"]=rscount;
-	reJson["per_page"]=per_page;
-	return c.JSON(http.StatusOK, reJson)
+	reJson["data"]=reData;
+	return c.JSON(http.StatusOK, reJson) 
+
 }
 
 /*@@UserAuthNewShow@@*/
@@ -119,11 +137,17 @@ func UserAuthNewShow(c echo.Context) (err error) {
 		return config.Success(c, 1, "数据不存在")
 	}
 	//输出浏览器
-	reJson := make(map[string]interface{})
+	reData := make(map[string]interface{})
+	reData["error"] = 0
+	reData["message"] = "success"
+	reData["data"] = data
+	
+	reJson := make(map[string]interface{}) 
 	reJson["error"] = 0
 	reJson["message"] = "success"
-	reJson["data"] = data
-	return c.JSON(http.StatusOK, reJson)
+	reJson["data"]=reData;
+	return c.JSON(http.StatusOK, reJson) 
+
 }
 
 /*@@UserAuthNewMy@@*/
@@ -155,14 +179,20 @@ func UserAuthNewMy(c echo.Context) (err error) {
 	if per_page>rscount {
 		per_page=0;
 	}
-	reJson := make(map[string]interface{})
+	reData := make(map[string]interface{})
+	reData["error"] = 0
+	reData["message"] = "success"
+	reData["list"] = indexModel.UserAuthNewList(list)
+	reData["type"] = reflect.TypeOf(list)
+	reData["rscount"]=rscount;
+	reData["per_page"]=per_page;
+	
+	reJson := make(map[string]interface{}) 
 	reJson["error"] = 0
 	reJson["message"] = "success"
-	reJson["list"] = indexModel.UserAuthNewList(list)
-	reJson["type"] = reflect.TypeOf(list)
-	reJson["rscount"]=rscount;
-	reJson["per_page"]=per_page;
-	return c.JSON(http.StatusOK, reJson)
+	reJson["data"]=reData;
+	return c.JSON(http.StatusOK, reJson) 
+
 }
 
 /*@@UserAuthNewAdd@@*/
@@ -191,12 +221,18 @@ func UserAuthNewAdd(c echo.Context) (err error) {
 	}
 
 	//输出浏览器
-	reJson := make(map[string]interface{})
+	reData := make(map[string]interface{})
+	reData["error"] = 0
+	reData["message"] = "success"
+	reData["data"] = data
+	reData["id"] = id
+	
+	reJson := make(map[string]interface{}) 
 	reJson["error"] = 0
 	reJson["message"] = "success"
-	reJson["data"] = data
-	reJson["id"] = id
-	return c.JSON(http.StatusOK, reJson)
+	reJson["data"]=reData;
+	return c.JSON(http.StatusOK, reJson) 
+
 }
 
 /*@@UserAuthNewSave@@*/
@@ -236,11 +272,17 @@ func UserAuthNewSave(c echo.Context) (err error) {
 	}
 
 	//输出浏览器
-	reJson := make(map[string]interface{})
+	reData := make(map[string]interface{})
+	reData["error"] = 0
+	reData["message"] = "success"
+	reData["data"] = postData
+	
+	reJson := make(map[string]interface{}) 
 	reJson["error"] = 0
 	reJson["message"] = "success"
-	reJson["data"] = postData
-	return c.JSON(http.StatusOK, reJson)
+	reJson["data"]=reData;
+	return c.JSON(http.StatusOK, reJson) 
+
 }
 /*@@UserAuthNewStatus@@*/
 func UserAuthNewStatus(c echo.Context) (err error) {
@@ -268,11 +310,17 @@ func UserAuthNewStatus(c echo.Context) (err error) {
 		status = 2
 	}
 	db.Model(indexModel.UserAuthNewModel{}).Where("id=?", id).Update("status", status)
-	reJson := make(map[string]interface{})
+	reData := make(map[string]interface{})
+	reData["error"] = 0
+	reData["message"] = "success"
+	reData["status"] = status
+	
+	reJson := make(map[string]interface{}) 
 	reJson["error"] = 0
 	reJson["message"] = "success"
-	reJson["status"] = status
-	return c.JSON(http.StatusOK, reJson)
+	reJson["data"]=reData;
+	return c.JSON(http.StatusOK, reJson) 
+
 
 }
 

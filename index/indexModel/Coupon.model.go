@@ -5,7 +5,7 @@ import (
 )
 
 type CouponModel struct {
-	Id      uint   `gorm:"primaryKey";json:"id"`
+	Id      uint   `gorm:"primaryKey" json:"id"`
 	Title      string   `json:"title"` 
 	Money      float64   `json:"money"` 
 	Amount      uint   `json:"amount"` 

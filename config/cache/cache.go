@@ -3,12 +3,15 @@ package cache
 import (
 	"app/config"
 	"app/index/indexModel"
+	"time"
 )
 
 func CacheSet(k string, v string, expire int64) {
 	var db = config.Db
 	row := indexModel.DbcacheModel{}
 	res := db.Where("k=?", k).First(&row)
+	t := time.Now()
+	expire = t.Unix() + expire
 	data := indexModel.DbcacheModel{
 		K:      k,
 		V:      v,

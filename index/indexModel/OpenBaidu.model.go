@@ -5,7 +5,7 @@ import (
 )
 
 type OpenBaiduModel struct {
-	Id      uint   `gorm:"primaryKey";json:"id"`
+	Id      uint   `gorm:"primaryKey" json:"id"`
 	Title      string   `json:"title"` 
 	Createtime      string   `json:"createtime"` 
 	Appid      string   `json:"appid"` 

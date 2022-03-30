@@ -5,7 +5,7 @@ import (
 )
 
 type ForumTagsIndexModel struct {
-	Id      uint   `gorm:"primaryKey";json:"id"`
+	Id      uint   `gorm:"primaryKey" json:"id"`
 	Tagid      uint   `json:"tagid"` 
 	Objectid      uint   `json:"objectid"` 
 	Orderindex      uint   `json:"orderindex"` 

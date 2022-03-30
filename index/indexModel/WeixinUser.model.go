@@ -5,7 +5,7 @@ import (
 )
 
 type WeixinUserModel struct {
-	Id      uint   `gorm:"primaryKey";json:"id"`
+	Id      uint   `gorm:"primaryKey" json:"id"`
 	Openid      string   `json:"openid"` 
 	Dateline      uint   `json:"dateline"` 
 	Add_time      uint   `json:"add_time"` 

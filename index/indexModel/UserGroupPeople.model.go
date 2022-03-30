@@ -5,7 +5,7 @@ import (
 )
 
 type UserGroupPeopleModel struct {
-	Id      uint   `gorm:"primaryKey";json:"id"`
+	Id      uint   `gorm:"primaryKey" json:"id"`
 	Gid      uint   `json:"gid"` 
 	Userid      uint   `json:"userid"` 
 	Dateline      uint   `json:"dateline"` 

@@ -5,7 +5,7 @@ import (
 )
 
 type MaxidModel struct {
-	Id      uint   `gorm:"primaryKey";json:"id"`
+	Id      uint   `gorm:"primaryKey" json:"id"`
 	T      uint   `json:"t"` 
 
 }

@@ -5,7 +5,7 @@ import (
 )
 
 type AdminModel struct {
-	Id      uint   `gorm:"primaryKey";json:"id"`
+	Id      uint   `gorm:"primaryKey" json:"id"`
 	Username      string   `json:"username"` 
 	Password      string   `json:"password"` 
 	Salt      uint   `json:"salt"` 

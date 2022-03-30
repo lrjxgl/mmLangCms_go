@@ -247,6 +247,7 @@
 		e.GET("/admin/kefu_msgindex/save", indexAdmin.KefuMsgindexSave);
 		e.GET("/admin/kefu_msgindex/status", indexAdmin.KefuMsgindexStatus);
 		e.GET("/admin/kefu_msgindex/delete", indexAdmin.KefuMsgindexDelete);
+		/*Login*/
 		/*Love*/
 		e.GET("/admin/love/index", indexAdmin.LoveIndex);
 		e.GET("/admin/love/add", indexAdmin.LoveAdd);
@@ -280,7 +281,7 @@
 		e.GET("/admin/navbar/save", indexAdmin.NavbarSave);
 		e.GET("/admin/navbar/status", indexAdmin.NavbarStatus);
 		e.GET("/admin/navbar/delete", indexAdmin.NavbarDelete);
-		e.GET("/admin/navbar/index", indexAdmin.NavbarIndex);
+		e.GET("/admin/navbar/get", indexAdmin.NavbarGet);
 		/*Notice*/
 		e.GET("/admin/notice/index", indexAdmin.NoticeIndex);
 		e.GET("/admin/notice/add", indexAdmin.NoticeAdd);

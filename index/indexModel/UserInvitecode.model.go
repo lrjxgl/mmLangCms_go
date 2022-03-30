@@ -5,7 +5,7 @@ import (
 )
 
 type UserInvitecodeModel struct {
-	Id      uint   `gorm:"primaryKey";json:"id"`
+	Id      uint   `gorm:"primaryKey" json:"id"`
 	Userid      uint   `json:"userid"` 
 	Icode      string   `json:"icode"` 
 

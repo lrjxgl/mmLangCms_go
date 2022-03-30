@@ -5,7 +5,7 @@ import (
 )
 
 type PvDayModel struct {
-	Id      uint   `gorm:"primaryKey";json:"id"`
+	Id      uint   `gorm:"primaryKey" json:"id"`
 	Ssid      string   `json:"ssid"` 
 	Createtime      string   `json:"createtime"` 
 	Url      string   `json:"url"` 

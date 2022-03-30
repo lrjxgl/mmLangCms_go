@@ -5,7 +5,7 @@ import (
 )
 
 type TixianModel struct {
-	Id      uint   `gorm:"primaryKey";json:"id"`
+	Id      uint   `gorm:"primaryKey" json:"id"`
 	Objectid      uint   `json:"objectid"` 
 	K      string   `json:"k"` 
 	Money      float64   `json:"money"` 

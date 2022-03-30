@@ -5,7 +5,7 @@ import (
 )
 
 type TableModel struct {
-	Tableid      uint   `gorm:"primaryKey";json:"tableid"`
+	Tableid      uint   `gorm:"primaryKey" json:"tableid"`
 	Title      string   `json:"title"` 
 	Tablename      string   `json:"tablename"` 
 	Description      string   `json:"description"` 

@@ -5,7 +5,7 @@ import (
 )
 
 type UserRankModel struct {
-	Id      uint   `gorm:"primaryKey";json:"id"`
+	Id      uint   `gorm:"primaryKey" json:"id"`
 	Rank_name      string   `json:"rank_name"` 
 	Min_grade      uint   `json:"min_grade"` 
 	Max_grade      uint   `json:"max_grade"` 

@@ -5,7 +5,7 @@ import (
 )
 
 type OpenAliossModel struct {
-	Id      uint   `gorm:"primaryKey";json:"id"`
+	Id      uint   `gorm:"primaryKey" json:"id"`
 	Title      string   `json:"title"` 
 	Apptype      string   `json:"apptype"` 
 	Createtime      string   `json:"createtime"` 

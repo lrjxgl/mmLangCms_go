@@ -5,7 +5,7 @@ import (
 )
 
 type ModelIndexModel struct {
-	Id      uint   `gorm:"primaryKey";json:"id"`
+	Id      uint   `gorm:"primaryKey" json:"id"`
 	Tablename      string   `json:"tablename"` 
 
 }

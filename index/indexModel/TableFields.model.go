@@ -5,7 +5,7 @@ import (
 )
 
 type TableFieldsModel struct {
-	Id      uint   `gorm:"primaryKey";json:"id"`
+	Id      uint   `gorm:"primaryKey" json:"id"`
 	Tableid      uint   `json:"tableid"` 
 	Title      string   `json:"title"` 
 	Fieldname      string   `json:"fieldname"` 

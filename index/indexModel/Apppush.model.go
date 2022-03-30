@@ -5,7 +5,7 @@ import (
 )
 
 type ApppushModel struct {
-	Id      uint   `gorm:"primaryKey";json:"id"`
+	Id      uint   `gorm:"primaryKey" json:"id"`
 	Token      string   `json:"token"` 
 	Clientid      string   `json:"clientid"` 
 	Appname      string   `json:"appname"` 

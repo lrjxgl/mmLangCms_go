@@ -5,7 +5,7 @@ import (
 )
 
 type CouponUserModel struct {
-	Id      uint   `gorm:"primaryKey";json:"id"`
+	Id      uint   `gorm:"primaryKey" json:"id"`
 	Coupon_id      uint   `json:"coupon_id"` 
 	Userid      uint   `json:"userid"` 
 	Dateline      uint   `json:"dateline"` 

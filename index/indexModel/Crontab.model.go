@@ -5,7 +5,7 @@ import (
 )
 
 type CrontabModel struct {
-	Id      uint   `gorm:"primaryKey";json:"id"`
+	Id      uint   `gorm:"primaryKey" json:"id"`
 	Title      string   `json:"title"` 
 	Url      string   `json:"url"` 
 	Crontime      string   `json:"crontime"` 

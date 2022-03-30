@@ -44,9 +44,15 @@ func LoginSave(c echo.Context) (err error) {
 	if password != row.Password {
 		return config.Success(c, 1, "登录失败")
 	}
-	reJson := access.GetAdminToken(row.Id, password)
+	reData := access.GetAdminToken(row.Id, password)
+	reData["error"] = 0
+	reData["message"] = "success"
+
+	
+	reJson := make(map[string]interface{}) 
 	reJson["error"] = 0
 	reJson["message"] = "success"
+	reJson["data"]=reData;
+	return c.JSON(http.StatusOK, reJson) 
 
-	return c.JSON(http.StatusOK, reJson)
 }

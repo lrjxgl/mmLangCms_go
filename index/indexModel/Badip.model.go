@@ -5,7 +5,7 @@ import (
 )
 
 type BadipModel struct {
-	Id      uint   `gorm:"primaryKey";json:"id"`
+	Id      uint   `gorm:"primaryKey" json:"id"`
 	Ip      string   `json:"ip"` 
 	Createtime      string   `json:"createtime"` 
 	Content      string   `json:"content"` 

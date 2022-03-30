@@ -5,7 +5,7 @@ import (
 )
 
 type UserAuthNewModel struct {
-	Id      uint   `gorm:"primaryKey";json:"id"`
+	Id      uint   `gorm:"primaryKey" json:"id"`
 	Userid      uint   `json:"userid"` 
 	Truename      string   `json:"truename"` 
 	User_card      string   `json:"user_card"` 

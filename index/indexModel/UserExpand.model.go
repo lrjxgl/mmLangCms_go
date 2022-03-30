@@ -5,7 +5,7 @@ import (
 )
 
 type UserExpandModel struct {
-	Uid      uint   `gorm:"primaryKey";json:"uid"`
+	Uid      uint   `gorm:"primaryKey" json:"uid"`
 	Content      string   `json:"content"` 
 
 }

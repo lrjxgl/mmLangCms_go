@@ -5,7 +5,7 @@ import (
 )
 
 type SgpayModel struct {
-	Id      uint   `gorm:"primaryKey";json:"id"`
+	Id      uint   `gorm:"primaryKey" json:"id"`
 	Userid      uint   `json:"userid"` 
 	Yhk_name      string   `json:"yhk_name"` 
 	Yhk_num      string   `json:"yhk_num"` 

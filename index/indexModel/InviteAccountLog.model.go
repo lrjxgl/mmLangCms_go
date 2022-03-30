@@ -5,7 +5,7 @@ import (
 )
 
 type InviteAccountLogModel struct {
-	Id      uint   `gorm:"primaryKey";json:"id"`
+	Id      uint   `gorm:"primaryKey" json:"id"`
 	Userid      uint   `json:"userid"` 
 	Cuserid      uint   `json:"cuserid"` 
 	Money      float64   `json:"money"` 

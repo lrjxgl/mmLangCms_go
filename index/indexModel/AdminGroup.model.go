@@ -5,11 +5,10 @@ import (
 )
 
 type AdminGroupModel struct {
-	Id      uint   `gorm:"primaryKey";json:"id"`
-	Title      string   `json:"title"` 
-	Orderindex      uint   `json:"orderindex"` 
-	Content      string   `json:"content"` 
-
+	Id         uint   `gorm:"primaryKey" json:"id"`
+	Title      string `json:"title"`
+	Orderindex uint   `json:"orderindex"`
+	Content    string `json:"content"`
 }
 
 func (AdminGroupModel) TableName() string {
@@ -24,7 +23,7 @@ func AdminGroupList(list []AdminGroupModel) []AdminGroupModel {
 
 	for i := 0; i < slen; i++ {
 		m := list[i]
-		
+
 		list[i] = m
 	}
 	return list

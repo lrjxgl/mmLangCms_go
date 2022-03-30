@@ -5,7 +5,7 @@ import (
 )
 
 type ApppushPlanModel struct {
-	Id      uint   `gorm:"primaryKey";json:"id"`
+	Id      uint   `gorm:"primaryKey" json:"id"`
 	Pid      uint   `json:"pid"` 
 	Typeid      uint   `json:"typeid"` 
 	Status      uint   `json:"status"` 

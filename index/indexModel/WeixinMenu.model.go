@@ -5,7 +5,7 @@ import (
 )
 
 type WeixinMenuModel struct {
-	Id      uint   `gorm:"primaryKey";json:"id"`
+	Id      uint   `gorm:"primaryKey" json:"id"`
 	Userid      uint   `json:"userid"` 
 	Wid      uint   `json:"wid"` 
 	Pid      uint   `json:"pid"` 

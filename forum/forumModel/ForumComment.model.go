@@ -5,7 +5,7 @@ import (
 )
 
 type ForumCommentModel struct {
-	Id      uint   `gorm:"primaryKey";json:"id"`
+	Id      uint   `gorm:"primaryKey" json:"id"`
 	Userid      uint   `json:"userid"` 
 	Status      uint   `json:"status"` 
 	Gid      uint   `json:"gid"` 

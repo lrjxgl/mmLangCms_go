@@ -21,12 +21,18 @@ func ForumGroupNull(c echo.Context) (err error){
 		return config.Success(c, 1000, "暂无权限")
 	}
 
-	reJson := make(map[string]interface{})
+	reData := make(map[string]interface{})
+	reData["error"] = 0
+	reData["message"] = "success"
+	reData["now"]=now;
+	 
+	
+	reJson := make(map[string]interface{}) 
 	reJson["error"] = 0
 	reJson["message"] = "success"
-	reJson["now"]=now;
-	 
-	return c.JSON(http.StatusOK, reJson)
+	reJson["data"]=reData;
+	return c.JSON(http.StatusOK, reJson) 
+
 }
 
 /*@@ForumGroupIndex@@*/
@@ -62,14 +68,20 @@ func ForumGroupIndex(c echo.Context) (err error) {
 	if per_page>rscount {
 		per_page=0;
 	}
-	reJson := make(map[string]interface{})
+	reData := make(map[string]interface{})
+	reData["error"] = 0
+	reData["message"] = "success"
+	reData["list"] = forumModel.ForumGroupList(list)
+	reData["type"] = reflect.TypeOf(list)
+	reData["rscount"]=rscount;
+	reData["per_page"]=per_page;
+	
+	reJson := make(map[string]interface{}) 
 	reJson["error"] = 0
 	reJson["message"] = "success"
-	reJson["list"] = forumModel.ForumGroupList(list)
-	reJson["type"] = reflect.TypeOf(list)
-	reJson["rscount"]=rscount;
-	reJson["per_page"]=per_page;
-	return c.JSON(http.StatusOK, reJson)
+	reJson["data"]=reData;
+	return c.JSON(http.StatusOK, reJson) 
+
 }
 
 /*@@ForumGroupAdd@@*/
@@ -92,12 +104,18 @@ func ForumGroupAdd(c echo.Context) (err error) {
 	}
 
 	//输出浏览器
-	reJson := make(map[string]interface{})
+	reData := make(map[string]interface{})
+	reData["error"] = 0
+	reData["message"] = "success"
+	reData["data"] = data
+	reData["gid"] = gid
+	
+	reJson := make(map[string]interface{}) 
 	reJson["error"] = 0
 	reJson["message"] = "success"
-	reJson["data"] = data
-	reJson["gid"] = gid
-	return c.JSON(http.StatusOK, reJson)
+	reJson["data"]=reData;
+	return c.JSON(http.StatusOK, reJson) 
+
 }
 
 /*@@ForumGroupSave@@*/
@@ -131,11 +149,17 @@ func ForumGroupSave(c echo.Context) (err error) {
 	}
 
 	//输出浏览器
-	reJson := make(map[string]interface{})
+	reData := make(map[string]interface{})
+	reData["error"] = 0
+	reData["message"] = "success"
+	reData["data"] = postData
+	
+	reJson := make(map[string]interface{}) 
 	reJson["error"] = 0
 	reJson["message"] = "success"
-	reJson["data"] = postData
-	return c.JSON(http.StatusOK, reJson)
+	reJson["data"]=reData;
+	return c.JSON(http.StatusOK, reJson) 
+
 }
 /*@@ForumGroupStatus@@*/
 func ForumGroupStatus(c echo.Context) (err error) {
@@ -157,11 +181,17 @@ func ForumGroupStatus(c echo.Context) (err error) {
 		status = 2
 	}
 	db.Model(forumModel.ForumGroupModel{}).Where("gid=?", gid).Update("status", status)
-	reJson := make(map[string]interface{})
+	reData := make(map[string]interface{})
+	reData["error"] = 0
+	reData["message"] = "success"
+	reData["status"] = status
+	
+	reJson := make(map[string]interface{}) 
 	reJson["error"] = 0
 	reJson["message"] = "success"
-	reJson["status"] = status
-	return c.JSON(http.StatusOK, reJson)
+	reJson["data"]=reData;
+	return c.JSON(http.StatusOK, reJson) 
+
 
 }
 
@@ -186,11 +216,17 @@ func ForumGroupRecommend(c echo.Context) (err error) {
 	}
 	db.Model(forumModel.ForumGroupModel{}).Where("gid=?", gid).Update("isrecommend", isrecommed)
 
-	reJson := make(map[string]interface{})
+	reData := make(map[string]interface{})
+	reData["error"] = 0
+	reData["message"] = "success"
+	reData["isrecommend"] = isrecommed
+	
+	reJson := make(map[string]interface{}) 
 	reJson["error"] = 0
 	reJson["message"] = "success"
-	reJson["isrecommend"] = isrecommed
-	return c.JSON(http.StatusOK, reJson)
+	reJson["data"]=reData;
+	return c.JSON(http.StatusOK, reJson) 
+
 
 }
 /*@@ForumGroupDelete@@*/

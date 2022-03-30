@@ -5,7 +5,7 @@ import (
 )
 
 type DbcacheModel struct {
-	Id      uint   `gorm:"primaryKey";json:"id"`
+	Id      uint   `gorm:"primaryKey" json:"id"`
 	K      string   `json:"k"` 
 	V      string   `json:"v"` 
 	Expire      uint   `json:"expire"` 

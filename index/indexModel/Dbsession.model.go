@@ -5,7 +5,7 @@ import (
 )
 
 type DbsessionModel struct {
-	Id      string   `gorm:"primaryKey";json:"id"`
+	Id      string   `gorm:"primaryKey" json:"id"`
 	Data      string   `json:"data"` 
 	Dateline      uint   `json:"dateline"` 
 

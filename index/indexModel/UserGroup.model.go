@@ -5,7 +5,7 @@ import (
 )
 
 type UserGroupModel struct {
-	Groupid      uint   `gorm:"primaryKey";json:"groupid"`
+	Groupid      uint   `gorm:"primaryKey" json:"groupid"`
 	Groupname      string   `json:"groupname"` 
 	Access      string   `json:"access"` 
 

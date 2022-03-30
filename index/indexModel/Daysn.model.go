@@ -5,7 +5,7 @@ import (
 )
 
 type DaysnModel struct {
-	Id      uint   `gorm:"primaryKey";json:"id"`
+	Id      uint   `gorm:"primaryKey" json:"id"`
 	Bday      string   `json:"bday"` 
 	Tablename      string   `json:"tablename"` 
 	Shopid      uint   `json:"shopid"` 

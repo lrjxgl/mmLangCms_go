@@ -5,7 +5,7 @@ import (
 )
 
 type SiteCityModel struct {
-	Sc_id      uint   `gorm:"primaryKey";json:"sc_id"`
+	Sc_id      uint   `gorm:"primaryKey" json:"sc_id"`
 	Title      string   `json:"title"` 
 	Cityid      uint   `json:"cityid"` 
 	Lat      float64   `json:"lat"` 

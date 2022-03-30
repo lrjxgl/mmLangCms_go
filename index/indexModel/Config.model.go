@@ -5,7 +5,7 @@ import (
 )
 
 type ConfigModel struct {
-	Id      uint   `gorm:"primaryKey";json:"id"`
+	Id      uint   `gorm:"primaryKey" json:"id"`
 	Siteid      uint   `json:"siteid"` 
 	Phone_on      uint   `json:"phone_on"` 
 	Phone_reg      uint   `json:"phone_reg"` 

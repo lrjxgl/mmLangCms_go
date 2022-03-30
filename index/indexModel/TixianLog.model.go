@@ -5,7 +5,7 @@ import (
 )
 
 type TixianLogModel struct {
-	Id      uint   `gorm:"primaryKey";json:"id"`
+	Id      uint   `gorm:"primaryKey" json:"id"`
 	Siteid      uint   `json:"siteid"` 
 	Dateline      uint   `json:"dateline"` 
 	Order_id      uint   `json:"order_id"` 

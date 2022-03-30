@@ -22,7 +22,7 @@ func AdminCheckAccess(c echo.Context) uint {
 		return 0
 	}
 	token := cache.CacheGet(str)
-	if token != "" {
+	if token == "" {
 		return 0
 	} else {
 		i, e := strconv.Atoi(token)

@@ -5,7 +5,7 @@ import (
 )
 
 type WeixinReplyModel struct {
-	Id      uint   `gorm:"primaryKey";json:"id"`
+	Id      uint   `gorm:"primaryKey" json:"id"`
 	Status      uint   `json:"status"` 
 	Openid      string   `json:"openid"` 
 	Msgtype      string   `json:"msgtype"` 

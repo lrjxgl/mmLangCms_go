@@ -5,7 +5,7 @@ import (
 )
 
 type ExpressFeeModel struct {
-	Id      uint   `gorm:"primaryKey";json:"id"`
+	Id      uint   `gorm:"primaryKey" json:"id"`
 	Title      string   `json:"title"` 
 	Fmoney      float64   `json:"fmoney"` 
 	Amoney      float64   `json:"amoney"` 

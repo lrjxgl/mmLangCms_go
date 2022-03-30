@@ -5,7 +5,7 @@ import (
 )
 
 type DataapiModel struct {
-	Id      uint   `gorm:"primaryKey";json:"id"`
+	Id      uint   `gorm:"primaryKey" json:"id"`
 	Title      string   `json:"title"` 
 	Word      string   `json:"word"` 
 	Dateline      uint   `json:"dateline"` 

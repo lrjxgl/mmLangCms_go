@@ -5,7 +5,7 @@ import (
 )
 
 type FriendModel struct {
-	Id      uint   `gorm:"primaryKey";json:"id"`
+	Id      uint   `gorm:"primaryKey" json:"id"`
 	Userid      uint   `json:"userid"` 
 	Touserid      uint   `json:"touserid"` 
 	Dateline      uint   `json:"dateline"` 

@@ -5,7 +5,7 @@ import (
 )
 
 type QueueModel struct {
-	Id      uint   `gorm:"primaryKey";json:"id"`
+	Id      uint   `gorm:"primaryKey" json:"id"`
 	Orderindex      uint   `json:"orderindex"` 
 	K      string   `json:"k"` 
 	Content      string   `json:"content"` 

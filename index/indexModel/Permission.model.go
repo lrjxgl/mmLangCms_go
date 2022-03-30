@@ -5,11 +5,10 @@ import (
 )
 
 type PermissionModel struct {
-	Id      uint   `gorm:"primaryKey";json:"id"`
-	M      string   `json:"m"` 
-	Access      string   `json:"access"` 
-	Title      string   `json:"title"` 
-
+	Id     uint   `json:"id"`
+	M      string `json:"m"`
+	Access string `json:"access"`
+	Title  string `json:"title"`
 }
 
 func (PermissionModel) TableName() string {
@@ -24,7 +23,7 @@ func PermissionList(list []PermissionModel) []PermissionModel {
 
 	for i := 0; i < slen; i++ {
 		m := list[i]
-		
+
 		list[i] = m
 	}
 	return list

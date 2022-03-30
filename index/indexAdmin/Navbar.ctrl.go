@@ -47,14 +47,20 @@ func NavbarIndex(c echo.Context) (err error) {
 	if per_page > rscount {
 		per_page = 0
 	}
-	reJson := make(map[string]interface{})
+	reData := make(map[string]interface{})
+	reData["error"] = 0
+	reData["message"] = "success"
+	reData["list"] = indexModel.NavbarChild(list)
+	reData["type"] = reflect.TypeOf(list)
+	reData["rscount"] = rscount
+	reData["per_page"] = per_page
+	
+	reJson := make(map[string]interface{}) 
 	reJson["error"] = 0
 	reJson["message"] = "success"
-	reJson["list"] = indexModel.NavbarChild(list)
-	reJson["type"] = reflect.TypeOf(list)
-	reJson["rscount"] = rscount
-	reJson["per_page"] = per_page
-	return c.JSON(http.StatusOK, reJson)
+	reJson["data"]=reData;
+	return c.JSON(http.StatusOK, reJson) 
+
 }
 
 /*@@NavbarShow@@*/
@@ -68,11 +74,17 @@ func NavbarShow(c echo.Context) (err error) {
 		return config.Success(c, 1, "数据不存在")
 	}
 	//输出浏览器
-	reJson := make(map[string]interface{})
+	reData := make(map[string]interface{})
+	reData["error"] = 0
+	reData["message"] = "success"
+	reData["data"] = data
+	
+	reJson := make(map[string]interface{}) 
 	reJson["error"] = 0
 	reJson["message"] = "success"
-	reJson["data"] = data
-	return c.JSON(http.StatusOK, reJson)
+	reJson["data"]=reData;
+	return c.JSON(http.StatusOK, reJson) 
+
 }
 
 /*@@NavbarAdd@@*/
@@ -93,12 +105,18 @@ func NavbarAdd(c echo.Context) (err error) {
 	}
 
 	//输出浏览器
-	reJson := make(map[string]interface{})
+	reData := make(map[string]interface{})
+	reData["error"] = 0
+	reData["message"] = "success"
+	reData["data"] = data
+	reData["id"] = id
+	
+	reJson := make(map[string]interface{}) 
 	reJson["error"] = 0
 	reJson["message"] = "success"
-	reJson["data"] = data
-	reJson["id"] = id
-	return c.JSON(http.StatusOK, reJson)
+	reJson["data"]=reData;
+	return c.JSON(http.StatusOK, reJson) 
+
 }
 
 /*@@NavbarSave@@*/
@@ -130,11 +148,17 @@ func NavbarSave(c echo.Context) (err error) {
 	}
 
 	//输出浏览器
-	reJson := make(map[string]interface{})
+	reData := make(map[string]interface{})
+	reData["error"] = 0
+	reData["message"] = "success"
+	reData["data"] = postData
+	
+	reJson := make(map[string]interface{}) 
 	reJson["error"] = 0
 	reJson["message"] = "success"
-	reJson["data"] = postData
-	return c.JSON(http.StatusOK, reJson)
+	reJson["data"]=reData;
+	return c.JSON(http.StatusOK, reJson) 
+
 }
 
 /*@@NavbarStatus@@*/
@@ -155,11 +179,17 @@ func NavbarStatus(c echo.Context) (err error) {
 		status = 2
 	}
 	db.Model(indexModel.NavbarModel{}).Where("id=?", id).Update("status", status)
-	reJson := make(map[string]interface{})
+	reData := make(map[string]interface{})
+	reData["error"] = 0
+	reData["message"] = "success"
+	reData["status"] = status
+	
+	reJson := make(map[string]interface{}) 
 	reJson["error"] = 0
 	reJson["message"] = "success"
-	reJson["status"] = status
-	return c.JSON(http.StatusOK, reJson)
+	reJson["data"]=reData;
+	return c.JSON(http.StatusOK, reJson) 
+
 
 }
 
@@ -181,7 +211,7 @@ func NavbarDelete(c echo.Context) (err error) {
 
 }
 
-/*@@NavbarIndex@@*/
+/*@@NavbarGet@@*/
 func NavbarGet(c echo.Context) (err error) {
 	adminid := access.AdminCheckAccess(c)
 	if adminid == 0 {
@@ -190,7 +220,7 @@ func NavbarGet(c echo.Context) (err error) {
 	group_id := c.QueryParam("group_id")
 	var db = config.Db
 	var list = []indexModel.NavbarModel{}
-	res := db.Where("group_id=?", group_id).Find(&list)
+	res := db.Where("group_id=?", group_id).Order("orderindex ASC").Find(&list)
 	if res.Error != nil {
 		list = []indexModel.NavbarModel{}
 	}
@@ -199,9 +229,15 @@ func NavbarGet(c echo.Context) (err error) {
 	pList := indexModel.NavbarChild(list)
 
 	//输出浏览器
-	reJson := make(map[string]interface{})
+	reData := make(map[string]interface{})
+	reData["error"] = 0
+	reData["message"] = "success"
+	reData["list"] = pList
+	
+	reJson := make(map[string]interface{}) 
 	reJson["error"] = 0
 	reJson["message"] = "success"
-	reJson["list"] = pList
-	return c.JSON(http.StatusOK, reJson)
+	reJson["data"]=reData;
+	return c.JSON(http.StatusOK, reJson) 
+
 }

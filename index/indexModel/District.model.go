@@ -5,7 +5,7 @@ import (
 )
 
 type DistrictModel struct {
-	Id      uint   `gorm:"primaryKey";json:"id"`
+	Id      uint   `gorm:"primaryKey" json:"id"`
 	Name      string   `json:"name"` 
 	Level      uint   `json:"level"` 
 	Usetype      uint   `json:"usetype"` 

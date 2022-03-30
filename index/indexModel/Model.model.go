@@ -5,7 +5,7 @@ import (
 )
 
 type ModelModel struct {
-	Id      uint   `gorm:"primaryKey";json:"id"`
+	Id      uint   `gorm:"primaryKey" json:"id"`
 	Title      string   `json:"title"` 
 	Tablename      string   `json:"tablename"` 
 	Cat_tpl      string   `json:"cat_tpl"` 

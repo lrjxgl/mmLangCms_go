@@ -5,7 +5,7 @@ import (
 )
 
 type PvUvModel struct {
-	Id      uint   `gorm:"primaryKey";json:"id"`
+	Id      uint   `gorm:"primaryKey" json:"id"`
 	Ssid      string   `json:"ssid"` 
 	Createtime      string   `json:"createtime"` 
 

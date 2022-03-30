@@ -5,7 +5,7 @@ import (
 )
 
 type ForumGroupAdminModel struct {
-	Id      uint   `gorm:"primaryKey";json:"id"`
+	Id      uint   `gorm:"primaryKey" json:"id"`
 	Userid      uint   `json:"userid"` 
 	Gid      uint   `json:"gid"` 
 	Dateline      uint   `json:"dateline"` 

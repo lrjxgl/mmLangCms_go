@@ -5,7 +5,7 @@ import (
 )
 
 type KefuMsgModel struct {
-	Id      uint   `gorm:"primaryKey";json:"id"`
+	Id      uint   `gorm:"primaryKey" json:"id"`
 	Createtime      string   `json:"createtime"` 
 	Userid      uint   `json:"userid"` 
 	Content      string   `json:"content"` 

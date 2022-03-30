@@ -5,7 +5,7 @@ import (
 )
 
 type SmsLogModel struct {
-	Id      uint   `gorm:"primaryKey";json:"id"`
+	Id      uint   `gorm:"primaryKey" json:"id"`
 	Telephone      string   `json:"telephone"` 
 	Userid      uint   `json:"userid"` 
 	Dateline      uint   `json:"dateline"` 

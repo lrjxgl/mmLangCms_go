@@ -5,7 +5,7 @@ import (
 )
 
 type RechargeModel struct {
-	Id      uint   `gorm:"primaryKey";json:"id"`
+	Id      uint   `gorm:"primaryKey" json:"id"`
 	Siteid      uint   `json:"siteid"` 
 	Userid      uint   `json:"userid"` 
 	Money      float64   `json:"money"` 

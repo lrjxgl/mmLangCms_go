@@ -5,7 +5,7 @@ import (
 )
 
 type ForumCategoryModel struct {
-	Catid      uint   `gorm:"primaryKey";json:"catid"`
+	Catid      uint   `gorm:"primaryKey" json:"catid"`
 	Gid      uint   `json:"gid"` 
 	Title      string   `json:"title"` 
 	Description      string   `json:"description"` 

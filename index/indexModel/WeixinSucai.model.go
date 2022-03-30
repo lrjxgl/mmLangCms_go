@@ -5,7 +5,7 @@ import (
 )
 
 type WeixinSucaiModel struct {
-	Id      uint   `gorm:"primaryKey";json:"id"`
+	Id      uint   `gorm:"primaryKey" json:"id"`
 	Title      string   `json:"title"` 
 	Dateline      uint   `json:"dateline"` 
 	Shopid      uint   `json:"shopid"` 

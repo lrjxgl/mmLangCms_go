@@ -5,7 +5,7 @@ import (
 )
 
 type GoldLogModel struct {
-	Id      uint   `gorm:"primaryKey";json:"id"`
+	Id      uint   `gorm:"primaryKey" json:"id"`
 	Dateline      uint   `json:"dateline"` 
 	Userid      uint   `json:"userid"` 
 	Type_id      uint   `json:"type_id"` 

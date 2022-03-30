@@ -3,10 +3,11 @@ package indexIndex
 import (
 	"app/access"
 	"app/config"
+	"app/config/cache"
 	"app/index/indexModel"
 	"fmt"
+	"math/rand"
 	"net/http"
-	"reflect"
 	"strconv"
 	"time"
 
@@ -23,275 +24,245 @@ func UserNull(c echo.Context) (err error) {
 		return config.Success(c, 1000, "请先登录")
 	}
 
-	reJson := make(map[string]interface{})
+	reData := make(map[string]interface{})
+	reData["error"] = 0
+	reData["message"] = "success"
+	reData["now"] = now
+
+	
+	reJson := make(map[string]interface{}) 
 	reJson["error"] = 0
 	reJson["message"] = "success"
-	reJson["now"] = now
+	reJson["data"]=reData;
+	return c.JSON(http.StatusOK, reJson) 
 
-	return c.JSON(http.StatusOK, reJson)
 }
 
 /*@@UserIndex@@*/
 func UserIndex(c echo.Context) (err error) {
 	fmt.Print("forumIndex")
 
-	var db = config.Db
-	var list = []indexModel.UserModel{}
+	reData := make(map[string]interface{})
+	reData["error"] = 0
+	reData["message"] = "success"
 
-	where := " status in(0,1,2) "
-	//统计数量
-	start, err := strconv.Atoi(c.QueryParam("per_page"))
-	if err != nil {
-		start = 0
-	}
-	limit, err2 := strconv.Atoi(c.QueryParam("limit"))
-	if err2 != nil || limit == 0 {
-		limit = 24
-	}
-	var rscount int64
-	db.Model(&indexModel.UserModel{}).Where(where).Count(&rscount)
-	//获取列表
-	res := db.Where(where).Limit(limit).Offset(start).Find(&list)
-	if res.Error != nil {
-		list = []indexModel.UserModel{}
-	}
-	//输出浏览器
-	var per_page int64 = int64(start + limit)
-	if per_page > rscount {
-		per_page = 0
-	}
-	reJson := make(map[string]interface{})
+	
+	reJson := make(map[string]interface{}) 
 	reJson["error"] = 0
 	reJson["message"] = "success"
-	reJson["list"] = indexModel.UserList(list)
-	reJson["type"] = reflect.TypeOf(list)
-	reJson["rscount"] = rscount
-	reJson["per_page"] = per_page
-	return c.JSON(http.StatusOK, reJson)
+	reJson["data"]=reData;
+	return c.JSON(http.StatusOK, reJson) 
+
 }
 
-/*@@UserList@@*/
-func UserList(c echo.Context) (err error) {
-	fmt.Print("forumIndex")
-
-	var db = config.Db
-	var list = []indexModel.UserModel{}
-
-	where := " status in(0,1,2) "
-	//统计数量
-	start, err := strconv.Atoi(c.QueryParam("per_page"))
-	if err != nil {
-		start = 0
-	}
-	limit, err2 := strconv.Atoi(c.QueryParam("limit"))
-	if err2 != nil || limit == 0 {
-		limit = 24
-	}
-	var rscount int64
-	db.Model(&indexModel.UserModel{}).Where(where).Count(&rscount)
-	//获取列表
-	res := db.Where(where).Limit(limit).Offset(start).Find(&list)
-	if res.Error != nil {
-		list = []indexModel.UserModel{}
-	}
-	//输出浏览器
-	var per_page int64 = int64(start + limit)
-	if per_page > rscount {
-		per_page = 0
-	}
-	reJson := make(map[string]interface{})
-	reJson["error"] = 0
-	reJson["message"] = "success"
-	reJson["list"] = indexModel.UserList(list)
-	reJson["type"] = reflect.TypeOf(list)
-	reJson["rscount"] = rscount
-	reJson["per_page"] = per_page
-	return c.JSON(http.StatusOK, reJson)
-}
-
-/*@@UserShow@@*/
-func UserShow(c echo.Context) (err error) {
-
-	userid := c.QueryParam("userid")
-	var db = config.Db
-	data := new(indexModel.UserModel)
-	res := db.Where("userid=?  AND status=1  ", userid).First(&data)
-	if res.Error != nil {
-		return config.Success(c, 1, "数据不存在")
-	}
-	//输出浏览器
-	reJson := make(map[string]interface{})
-	reJson["error"] = 0
-	reJson["message"] = "success"
-	reJson["data"] = data
-	return c.JSON(http.StatusOK, reJson)
-}
-
-/*@@UserMy@@*/
-func UserMy(c echo.Context) (err error) {
-	fmt.Print("forumIndex")
-
-	var db = config.Db
-	var list = []indexModel.UserModel{}
-
-	where := " status in(0,1,2) "
-	//统计数量
-	start, err := strconv.Atoi(c.QueryParam("per_page"))
-	if err != nil {
-		start = 0
-	}
-	limit, err2 := strconv.Atoi(c.QueryParam("limit"))
-	if err2 != nil || limit == 0 {
-		limit = 24
-	}
-	var rscount int64
-	db.Model(&indexModel.UserModel{}).Where(where).Count(&rscount)
-	//获取列表
-	res := db.Where(where).Limit(limit).Offset(start).Find(&list)
-	if res.Error != nil {
-		list = []indexModel.UserModel{}
-	}
-	//输出浏览器
-	var per_page int64 = int64(start + limit)
-	if per_page > rscount {
-		per_page = 0
-	}
-	reJson := make(map[string]interface{})
-	reJson["error"] = 0
-	reJson["message"] = "success"
-	reJson["list"] = indexModel.UserList(list)
-	reJson["type"] = reflect.TypeOf(list)
-	reJson["rscount"] = rscount
-	reJson["per_page"] = per_page
-	return c.JSON(http.StatusOK, reJson)
-}
-
-/*@@UserAdd@@*/
-func UserAdd(c echo.Context) (err error) {
-
-	userid := access.UserCheckAccess(c)
-	if userid == 0 {
+/*@@UserSet@@*/
+func UserSet(c echo.Context) (err error) {
+	ssuserid := access.UserCheckAccess(c)
+	if ssuserid == 0 {
 		return config.Success(c, 1000, "请先登录")
 	}
-
-	var db = config.Db
-
-	var data = indexModel.UserModel{}
-	if userid != 0 {
-		res := db.Where("userid=?  AND status<4  ", userid).First(&data)
-		if res.Error != nil {
-			return config.Success(c, 1, "数据不存在")
-		}
-
-		if data.Userid != userid {
-			return config.Success(c, 0, "暂无权限")
-		}
-
-	}
+	user := indexModel.UserGet(ssuserid, "userid,nickname,user_head,gold,grade")
 
 	//输出浏览器
-	reJson := make(map[string]interface{})
+	reData := make(map[string]interface{})
+	reData["error"] = 0
+	reData["message"] = "success"
+	reData["user"] = user
+	
+	reJson := make(map[string]interface{}) 
 	reJson["error"] = 0
 	reJson["message"] = "success"
-	reJson["data"] = data
-	reJson["userid"] = userid
-	return c.JSON(http.StatusOK, reJson)
+	reJson["data"]=reData;
+	return c.JSON(http.StatusOK, reJson) 
+
+}
+
+/*@@UserInfo@@*/
+func UserInfo(c echo.Context) (err error) {
+	ssuserid := access.UserCheckAccess(c)
+	if ssuserid == 0 {
+		return config.Success(c, 1000, "请先登录")
+	}
+	user := indexModel.UserGet(ssuserid, "userid,nickname,telephone,user_head,description,gold,grade")
+	reData := make(map[string]interface{})
+	reData["error"] = 0
+	reData["message"] = "success"
+	reData["user"] = user
+	
+	reJson := make(map[string]interface{}) 
+	reJson["error"] = 0
+	reJson["message"] = "success"
+	reJson["data"]=reData;
+	return c.JSON(http.StatusOK, reJson) 
+
 }
 
 /*@@UserSave@@*/
 func UserSave(c echo.Context) (err error) {
-
-	userid := access.UserCheckAccess(c)
-	if userid == 0 {
+	ssuserid := access.UserCheckAccess(c)
+	if ssuserid == 0 {
 		return config.Success(c, 1000, "请先登录")
 	}
-
-	var db = config.Db
-	var data = indexModel.UserModel{}
-	if userid != 0 {
-		res := db.Where("userid=?  AND status<4  ", userid).First(&data)
-		if res.Error != nil {
-			return config.Success(c, 1, "数据不存在")
-		}
-
-		if data.Userid != userid {
-			return config.Success(c, 0, "暂无权限")
-		}
-
-	}
-	//新增数据
-
+	db := config.Db
 	postData := map[string]interface{}{}
-	postData["title"] = c.FormValue("title")
+	postData["nickname"] = c.FormValue("nickname")
 	postData["description"] = c.FormValue("description")
 	now := time.Now()
-	postData["createtime"] = now.Format("2006-01-02 15:04:05")
-	if userid != 0 {
-		db.Create(postData)
-	} else {
-		db.Model(indexModel.UserModel{}).Where("userid=?", userid).Updates(postData)
-	}
-
-	//输出浏览器
-	reJson := make(map[string]interface{})
+	postData["updatetime"] = now.Format("2006-01-02 15:04:05")
+	db.Model(indexModel.UserModel{}).Where("userid=?", ssuserid).Updates(postData)
+	reData := make(map[string]interface{})
+	reData["error"] = 0
+	reData["message"] = "success"
+	
+	reJson := make(map[string]interface{}) 
 	reJson["error"] = 0
 	reJson["message"] = "success"
-	reJson["data"] = postData
-	return c.JSON(http.StatusOK, reJson)
-}
-
-/*@@UserStatus@@*/
-func UserStatus(c echo.Context) (err error) {
-
-	userid := access.UserCheckAccess(c)
-	if userid == 0 {
-		return config.Success(c, 1000, "请先登录")
-	}
-
-	var db = config.Db
-	data := new(indexModel.UserModel)
-	res := db.Where("userid=?", userid).First(&data)
-	if res.Error != nil {
-		return config.Success(c, 1, "数据不存在")
-	}
-
-	if data.Userid != userid {
-		return config.Success(c, 0, "暂无权限")
-	}
-
-	status := 1
-	if data.Status == 1 {
-		status = 2
-	}
-	db.Model(indexModel.UserModel{}).Where("userid=?", userid).Update("status", status)
-	reJson := make(map[string]interface{})
-	reJson["error"] = 0
-	reJson["message"] = "success"
-	reJson["status"] = status
-	return c.JSON(http.StatusOK, reJson)
+	reJson["data"]=reData;
+	return c.JSON(http.StatusOK, reJson) 
 
 }
 
-/*@@UserDelete@@*/
-func UserDelete(c echo.Context) (err error) {
-
-	userid := access.UserCheckAccess(c)
-	if userid == 0 {
+/*@@UserTelephonesave@@*/
+func UserTelephonesave(c echo.Context) (err error) {
+	ssuserid := access.UserCheckAccess(c)
+	if ssuserid == 0 {
 		return config.Success(c, 1000, "请先登录")
 	}
+	user := indexModel.UserGet(ssuserid, "userid,telephone")
+	telephone := user.Telephone
+	if telephone != "" {
+		return config.Success(c, 1, "手机已经绑定了")
+	}
+	telephone = c.FormValue("telephone")
+	yzm := c.FormValue("yzm")
+	cacheKey := "smsUser" + telephone + yzm
+	res := cache.CacheGet(cacheKey)
+	if res == "" {
+		return config.Success(c, 1, "验证码出错"+res)
+	}
+	db := config.Db
+	postData := map[string]interface{}{}
+	postData["telephone"] = c.FormValue("telephone")
 
-	var db = config.Db
-	data := new(indexModel.UserModel)
-	res := db.Where("userid=?", userid).First(&data)
-	if res.Error != nil {
-		return config.Success(c, 1, "数据不存在")
+	now := time.Now()
+	postData["updatetime"] = now.Format("2006-01-02 15:04:05")
+	db.Model(indexModel.UserModel{}).Where("userid=?", ssuserid).Updates(postData)
+	reData := make(map[string]interface{})
+	reData["error"] = 0
+	reData["message"] = "success"
+	
+	reJson := make(map[string]interface{}) 
+	reJson["error"] = 0
+	reJson["message"] = "success"
+	reJson["data"]=reData;
+	return c.JSON(http.StatusOK, reJson) 
+
+}
+
+/*@@UserPasswordsave@@*/
+func UserPasswordsave(c echo.Context) (err error) {
+	ssuserid := access.UserCheckAccess(c)
+	if ssuserid == 0 {
+		return config.Success(c, 1000, "请先登录")
+	}
+	db := config.Db
+	oldpassword := c.FormValue("oldpassword")
+	password := c.FormValue("password")
+	password2 := c.FormValue("password2")
+	if password != password2 {
+		return config.Success(c, 1, "两次密码输入不一致")
+	}
+	puser := indexModel.UserPasswordModel{}
+	db.Where("userid=?", ssuserid).First(&puser)
+	if puser.Password != config.Umd5(oldpassword+puser.Salt) {
+		return config.Success(c, 1, "密码错误")
+	}
+	salt := strconv.Itoa(rand.Intn(9000) + 999)
+	postData := map[string]interface{}{}
+	postData["salt"] = salt
+	postData["password"] = config.Umd5(password + salt)
+	db.Model(indexModel.UserPasswordModel{}).Where("userid=?", ssuserid).Updates(postData)
+	reData := make(map[string]interface{})
+	reData["error"] = 0
+	reData["message"] = "success"
+	
+	reJson := make(map[string]interface{}) 
+	reJson["error"] = 0
+	reJson["message"] = "success"
+	reJson["data"]=reData;
+	return c.JSON(http.StatusOK, reJson) 
+
+}
+
+/*@@UserPaypwdsave@@*/
+func UserPaypwdsave(c echo.Context) (err error) {
+	ssuserid := access.UserCheckAccess(c)
+	if ssuserid == 0 {
+		return config.Success(c, 1000, "请先登录")
+	}
+	user := indexModel.UserGet(ssuserid, "userid,telephone")
+	telephone := user.Telephone
+
+	yzm := c.FormValue("yzm")
+	cacheKey := "smsUser" + telephone + yzm
+	res := cache.CacheGet(cacheKey)
+	if res == "" {
+		return config.Success(c, 1, "验证码出错")
+	}
+	db := config.Db
+
+	paypwd := c.FormValue("password")
+
+	postData := map[string]interface{}{}
+
+	postData["password"] = config.Umd5(paypwd)
+	db.Model(indexModel.UserPasswordModel{}).Where("userid=?", ssuserid).Updates(postData)
+	reData := make(map[string]interface{})
+	reData["error"] = 0
+	reData["message"] = "success"
+	
+	reJson := make(map[string]interface{}) 
+	reJson["error"] = 0
+	reJson["message"] = "success"
+	reJson["data"]=reData;
+	return c.JSON(http.StatusOK, reJson) 
+
+}
+
+/*@@UserSendsms@@*/
+func UserSendsms(c echo.Context) (err error) {
+	ssuserid := access.UserCheckAccess(c)
+	if ssuserid == 0 {
+		return config.Success(c, 1000, "请先登录")
+	}
+	user := indexModel.UserGet(ssuserid, "userid,telephone")
+	telephone := user.Telephone
+	if user.Telephone == "" {
+		telephone = c.FormValue("telephone")
+	}
+	if telephone == "" {
+		return config.Success(c, 1, "手机号码错误")
+	}
+	yzm := strconv.Itoa(rand.Intn(9000) + 999)
+	var ops = make(map[string]interface{})
+	ops["telephone"] = telephone
+	ops["content"] = "您的验证码：" + yzm
+	ops["yzm"] = yzm
+	cacheKey := "smsUser" + telephone + yzm
+	cache.CacheSet(cacheKey, "1", 300)
+	if config.SmsTest {
+		return config.Success(c, 0, "验证码:"+yzm)
 	}
 
-	if data.Userid != userid {
-		return config.Success(c, 0, "暂无权限")
-	}
-
-	db.Model(indexModel.UserModel{}).Where("userid=?", userid).Update("status", 11)
-	return config.Success(c, 0, "删除成功")
+	config.SendSms(ops)
+	reData := make(map[string]interface{})
+	reData["error"] = 0
+	reData["message"] = "success"
+	
+	reJson := make(map[string]interface{}) 
+	reJson["error"] = 0
+	reJson["message"] = "success"
+	reJson["data"]=reData;
+	return c.JSON(http.StatusOK, reJson) 
 
 }

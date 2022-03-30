@@ -5,7 +5,7 @@ import (
 )
 
 type CategoryModel struct {
-	Catid      uint   `gorm:"primaryKey";json:"catid"`
+	Catid      uint   `gorm:"primaryKey" json:"catid"`
 	Tablename      string   `json:"tablename"` 
 	Pid      uint   `json:"pid"` 
 	Cname      string   `json:"cname"` 

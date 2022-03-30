@@ -5,7 +5,7 @@ import (
 )
 
 type NoticeModel struct {
-	Id      uint   `gorm:"primaryKey";json:"id"`
+	Id      uint   `gorm:"primaryKey" json:"id"`
 	Dateline      uint   `json:"dateline"` 
 	Type_id      uint   `json:"type_id"` 
 	Status      uint   `json:"status"` 

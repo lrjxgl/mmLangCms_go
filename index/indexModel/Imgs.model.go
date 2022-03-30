@@ -5,7 +5,7 @@ import (
 )
 
 type ImgsModel struct {
-	Id      uint   `gorm:"primaryKey";json:"id"`
+	Id      uint   `gorm:"primaryKey" json:"id"`
 	Tablename      string   `json:"tablename"` 
 	Object_id      uint   `json:"object_id"` 
 	Imgurl      string   `json:"imgurl"` 

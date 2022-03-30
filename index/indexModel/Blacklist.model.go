@@ -5,7 +5,7 @@ import (
 )
 
 type BlacklistModel struct {
-	Id      uint   `gorm:"primaryKey";json:"id"`
+	Id      uint   `gorm:"primaryKey" json:"id"`
 	Userid      uint   `json:"userid"` 
 	Dateline      uint   `json:"dateline"` 
 

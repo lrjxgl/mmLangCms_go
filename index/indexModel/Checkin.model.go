@@ -5,7 +5,7 @@ import (
 )
 
 type CheckinModel struct {
-	Id      uint   `gorm:"primaryKey";json:"id"`
+	Id      uint   `gorm:"primaryKey" json:"id"`
 	Siteid      uint   `json:"siteid"` 
 	Userid      uint   `json:"userid"` 
 	Day      uint   `json:"day"` 

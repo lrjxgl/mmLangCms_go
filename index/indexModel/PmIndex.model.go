@@ -5,7 +5,7 @@ import (
 )
 
 type PmIndexModel struct {
-	Id      uint   `gorm:"primaryKey";json:"id"`
+	Id      uint   `gorm:"primaryKey" json:"id"`
 	Userid      uint   `json:"userid"` 
 	T_userid      uint   `json:"t_userid"` 
 	Pm_num      uint   `json:"pm_num"` 

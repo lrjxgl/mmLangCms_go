@@ -5,7 +5,7 @@ import (
 )
 
 type ArticleDataModel struct {
-	Id      uint   `gorm:"primaryKey";json:"id"`
+	Id      uint   `gorm:"primaryKey" json:"id"`
 	Content      string   `json:"content"` 
 	Createtime      string   `json:"createtime"` 
 

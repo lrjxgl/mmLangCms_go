@@ -5,7 +5,7 @@ import (
 )
 
 type SiteModel struct {
-	Siteid      uint   `gorm:"primaryKey";json:"siteid"`
+	Siteid      uint   `gorm:"primaryKey" json:"siteid"`
 	Sitename      string   `json:"sitename"` 
 	Domain      string   `json:"domain"` 
 	Is_open      uint   `json:"is_open"` 
