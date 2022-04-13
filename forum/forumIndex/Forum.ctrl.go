@@ -66,12 +66,21 @@ func ForumIndex(c echo.Context) (err error) {
 
 /*@@ForumList@@*/
 func ForumList(c echo.Context) (err error) {
-	fmt.Print("forumIndex")
-
+	gid := c.QueryParam("gid")
+	catid := c.QueryParam("catid")
 	var db = config.Db
+	group := new(forumModel.ForumGroupModel)
+	db.Where("gid=?", gid).First(&group)
 	var list = []forumModel.ForumModel{}
-
-	where := " status in(0,1,2) "
+	catList := new([]forumModel.ForumCategoryModel)
+	db.Where("gid=? ", gid).Find(&catList)
+	where := " status in(0,1) "
+	if catid != "0" {
+		where += " AND catid=" + catid
+	}
+	if gid != "0" {
+		where += " AND gid=" + gid
+	}
 	//统计数量
 	start, err := strconv.Atoi(c.QueryParam("per_page"))
 	if err != nil {
@@ -94,8 +103,8 @@ func ForumList(c echo.Context) (err error) {
 		per_page = 0
 	}
 	reData := make(map[string]interface{})
-	reData["error"] = 0
-	reData["message"] = "success"
+	reData["group"] = group
+	reData["catList"] = catList
 	reData["list"] = forumModel.ForumList(list)
 	reData["rscount"] = rscount
 	reData["per_page"] = per_page

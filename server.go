@@ -9,6 +9,7 @@ import (
 
 func main() {
 	e := echo.New()
+	e.Static("/attach", "attach")
 	e.Use(middleware.CORS())
 
 	router.LoginRouter(e)

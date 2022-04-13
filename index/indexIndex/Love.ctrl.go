@@ -126,7 +126,7 @@ func LoveList(c echo.Context) (err error) {
 
 }
 
-/*@@LoveShow@@*/
+/*@@LoveGet@@*/
 func LoveGet(c echo.Context) (err error) {
 	userid := access.UserCheckAccess(c)
 	objectid := c.QueryParam("objectid")

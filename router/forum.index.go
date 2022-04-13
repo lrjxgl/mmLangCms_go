@@ -56,6 +56,8 @@ func ForumIndexRouter(e *echo.Echo) {
 	e.POST("/forum_group_admin/save", forumIndex.ForumGroupAdminSave)
 	e.GET("/forum_group_admin/status", forumIndex.ForumGroupAdminStatus)
 	e.GET("/forum_group_admin/delete", forumIndex.ForumGroupAdminDelete)
+	/*ForumHome*/
+	e.GET("/forum_home/index", forumIndex.ForumHomeIndex)
 	/*ForumImg*/
 	e.GET("/forum_img/index", forumIndex.ForumImgIndex)
 	e.GET("/forum_img/list", forumIndex.ForumImgList)
